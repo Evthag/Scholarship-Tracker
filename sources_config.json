@@ -1,50 +1,81 @@
-{
-  "_comment": "Each entry is one listing page to scrape. `list_selector` matches one card/row per scholarship. The rest are CSS selectors RELATIVE to that card. Run `python scripts/inspect_page.py <url>` (needs real internet access) to print candidate selectors, then confirm with your browser's 'Inspect Element'. Sites change their HTML often -- if a source stops returning results, this is almost always the first place to fix.",
+"sources": [
+  {
+    "name": "Scholarships.com - Computer Science",
+    "url": "https://www.scholarships.com/financial-aid/college-scholarships/scholarship-directory/academic-major/computer-science",
+    "list_selector": "tr",
+    "title_selector": "td:first-child",
+    "title_attr": "text",
+    "link_selector": "a",
+    "link_attr": "href",
+    "description_selector": "td",
+    "amount_selector": "td",
+    "deadline_selector": "td",
+    "base_url": "https://www.scholarships.com",
+    "enabled": true,
+    "note": "Computer Science scholarship directory. Verify selectors with inspect_page.py before relying on automated collection."
+  },
 
-  "keywords": [
-    "statistics", "statistical", "data science", "data analytics",
-    "data analysis", "computer science", "machine learning",
-    "data engineering", "artificial intelligence", "computing",
-    "informatics", "software engineering"
-  ],
-  "keywords_comment": "A scraped scholarship is kept only if its title+description contains at least one of these (case-insensitive). This filter runs on EVERY source, so even a general/all-majors listing page only contributes relevant rows. Edit freely.",
+  {
+    "name": "Federal Ministry of Education - Nigeria",
+    "url": "https://education.gov.ng/",
+    "list_selector": "article",
+    "title_selector": "h2, h3, h4",
+    "title_attr": "text",
+    "link_selector": "a",
+    "link_attr": "href",
+    "description_selector": "p",
+    "amount_selector": "",
+    "deadline_selector": "",
+    "base_url": "https://education.gov.ng",
+    "enabled": true,
+    "note": "Official Nigerian government education and scholarship announcements. Selector structure should be verified before enabling automated scraping."
+  },
 
-  "sources": [
-    {
-      "name": "Bold.org - Computer Science Scholarships",
-      "url": "https://bold.org/scholarships/computer-science-scholarships/",
-      "list_selector": "TODO: run scripts/inspect_page.py on this URL to find the real repeating scholarship-card selector",
-      "title_selector": "h3, h2",
-      "title_attr": "text",
-      "link_selector": "a",
-      "link_attr": "href",
-      "description_selector": "p",
-      "amount_selector": "[class*='amount'], [class*='award']",
-      "deadline_selector": "[class*='deadline']",
-      "base_url": "https://bold.org",
-      "enabled": false,
-      "note": "Manually confirmed this is a real, server-rendered list of ~80 CS scholarships (title, funder, eligibility bullets, amount, deadline) -- not JS-gated, not behind login. Selectors above are placeholders; verify with inspect_page.py before setting enabled:true."
-    },
-    {
-      "name": "Niche - General Scholarships",
-      "url": "https://www.niche.com/colleges/scholarships/",
-      "list_selector": "div[class*='scholarship-card']",
-      "title_selector": "h2, h3",
-      "title_attr": "text",
-      "link_selector": "a",
-      "link_attr": "href",
-      "amount_selector": "[class*='amount']",
-      "deadline_selector": "[class*='deadline']",
-      "base_url": "https://www.niche.com",
-      "enabled": false,
-      "note": "Returned HTTP 403 (bot-blocked) when tested from this environment. Kept as an example of a source that currently does NOT work -- don't enable without a different fetch strategy."
-    }
-  ],
+  {
+    "name": "NIGSS Opportunities",
+    "url": "https://www.nigss.org/opportunities.html",
+    "list_selector": "article, .opportunity, .card",
+    "title_selector": "h2, h3, h4",
+    "title_attr": "text",
+    "link_selector": "a",
+    "link_attr": "href",
+    "description_selector": "p",
+    "amount_selector": "",
+    "deadline_selector": "",
+    "base_url": "https://www.nigss.org",
+    "enabled": true,
+    "note": "Nigeria-focused opportunity hub covering scholarships, fellowships, grants and technology opportunities. Verify selectors before production use."
+  },
 
-  "notes": [
-    "enabled:false sources are skipped -- flip to true once you've verified selectors AND checked the site's robots.txt/ToS.",
-    "Add as many source objects as you want; the scraper loops over all of them and applies the `keywords` filter to each.",
-    "If a site renders listings via JavaScript (nothing shows up in `curl` or `requests`), plain requests+BeautifulSoup won't see them -- see the Playwright note in scripts/scrape_scholarships.py.",
-    "Good candidates to add next: your university's CS/Stats department scholarship page, ACM, IEEE Computer Society, the American Statistical Association (amstat.org) awards page -- these are narrower, less likely to block bots, and squarely on-topic."
-  ]
-}
+  {
+    "name": "ACM-W Scholarships",
+    "url": "https://acmwibd.acm.org/scholarships.php",
+    "list_selector": "main, body",
+    "title_selector": "h1, h2, h3",
+    "title_attr": "text",
+    "link_selector": "a",
+    "link_attr": "href",
+    "description_selector": "p",
+    "amount_selector": "",
+    "deadline_selector": "",
+    "base_url": "https://acmwibd.acm.org",
+    "enabled": true,
+    "note": "ACM-W scholarship information for women undergraduate and graduate students in Computer Science and related fields."
+  },
+
+  {
+    "name": "Upsilon Pi Epsilon - ACM Scholarships",
+    "url": "https://upe.acm.org/",
+    "list_selector": "article, main, body",
+    "title_selector": "h1, h2, h3, h4",
+    "title_attr": "text",
+    "link_selector": "a",
+    "link_attr": "href",
+    "description_selector": "p",
+    "amount_selector": "",
+    "deadline_selector": "",
+    "base_url": "https://upe.acm.org",
+    "enabled": true,
+    "note": "Official UPE site. 2026 UPE and UPE/ACM scholarship applications are listed on the site."
+  }
+]
