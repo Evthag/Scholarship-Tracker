@@ -13,11 +13,6 @@ the sources configured in `scripts/sources_config.json`, merges them into
 `data/scholarships.json` (deduped, so nothing repeats), and rewrites the
 table below.
 
-> Sources currently scrape public, no-login listing pages. Add or remove
-> sources by editing `scripts/sources_config.json` — see that file's
-> comments for how selectors work. Always check a site's `robots.txt` and
-> Terms of Service before adding it as a source.
-
 ## Open Scholarships
 
 <!--START_SECTION:scholarships-->
