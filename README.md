@@ -5,10 +5,7 @@ Data Science, Data Analytics, and Statistics** students, scraped from
 public listing pages on a daily schedule via GitHub Actions. Every source
 is passed through a keyword filter (`scripts/sources_config.json` ->
 `"keywords"`) so only on-topic scholarships make it into the table, even
-if a source lists scholarships for all majors. Inspired by the
-[Summer2027-Internships](https://github.com/SimplifyJobs/Summer2027-Internships)
-bot pattern: a scheduled workflow runs a scraper and commits the refreshed
-table back to this README.
+if a source lists scholarships for all majors. 
 
 **How it works:** `.github/workflows/update-scholarships.yml` runs
 `scripts/scrape_scholarships.py` every day. The script pulls listings from
